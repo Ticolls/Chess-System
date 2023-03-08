@@ -16,6 +16,7 @@ public class UI {
         System.out.println("  a b c d e f g h");
     }
 
+    // Printa a peça caso ela exista, se não, printa um "-"
     private static void printPiece(ChessPiece piece) {
         if (piece == null) {
             System.out.print("-");
