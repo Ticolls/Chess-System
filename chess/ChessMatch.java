@@ -1,6 +1,7 @@
 package chess;
 
 import boardgame.Board;
+import boardgame.Piece;
 import boardgame.Position;
 import chess.pieces.King;
 import chess.pieces.Rook;
@@ -26,6 +27,34 @@ public class ChessMatch {
             }
         }
         return matriz;
+    }
+
+    // Faz o movimento na camada do Chess
+    public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
+
+        // Transformando as posições no formato do xadrez em posições da camada board
+        Position source = sourcePosition.toBoardPosition();
+        Position target = targetPosition.toBoardPosition();
+
+        validateSourcePosition(source);
+        Piece capturedPiece = makeMove(source, target);
+
+        return (ChessPiece) capturedPiece;
+    }
+
+    // Faz o movimento na camada do board
+    private Piece makeMove(Position source, Position target) {
+        Piece p = board.removePiece(source);
+        Piece capturedPiece = board.removePiece(target);
+        board.placePiece(p, target);
+
+        return capturedPiece;
+    }
+
+    private void validateSourcePosition(Position source) {
+        if (!board.thereIsAPiece(source)) {
+            throw new ChessException("There is no piece on source position");
+        }
     }
 
     // Coloca uma peça na camada Board passando as coordenadas no formato do xadrez
