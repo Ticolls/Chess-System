@@ -65,6 +65,10 @@ public class UI {
         Color currentPlayer = chessMatch.getCurrentPlayer();
         System.out.println("turn: " + turn);
         System.out.println("Waiting player: " + currentPlayer);
+
+        if (chessMatch.getCheck()) {
+            System.out.println("CHECK!");
+        }
     }
 
     public static void printBoard(ChessPiece[][] pieces) {
