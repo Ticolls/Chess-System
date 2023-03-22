@@ -64,10 +64,16 @@ public class UI {
         int turn = chessMatch.getTurn();
         Color currentPlayer = chessMatch.getCurrentPlayer();
         System.out.println("turn: " + turn);
-        System.out.println("Waiting player: " + currentPlayer);
 
-        if (chessMatch.getCheck()) {
-            System.out.println("CHECK!");
+        if (!chessMatch.getCheckMate()) {
+            System.out.println("Waiting player: " + currentPlayer);
+
+            if (chessMatch.getCheck()) {
+                System.out.println("CHECK!");
+            }
+        } else {
+            System.out.println("CHECKMATE!");
+            System.out.println("Winner: " + chessMatch.getCurrentPlayer());
         }
     }
 
